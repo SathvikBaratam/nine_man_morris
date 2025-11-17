@@ -17,6 +17,6 @@ temp_feelslike_celcius = weather_data["current"]["feelslike_c"]
 temp_feelslike_f = weather_data["current"]["feelslike_f"]
 humidity = weather_data["current"]["humidity"]
 air_quality = weather_data["current"]["air_quality"]
-//hello
+
 
 
