@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+FAV_FILE = "favorite_cities.json"
 def load_favorites():
     if os.path.exists(FAV_FILE):
         with open(FAV_FILE, "r") as f:
@@ -36,7 +37,30 @@ def feeling_message(temp):
         return "😊 Pleasant weather!"
     else:
         return "🥵 It's hot! Stay hydrated!"
+def compare_two_cities(city1, city2):
+    print(f"\n🔍 Comparing: {city1} VS {city2}\n")
 
+    data1 = get_weather_info(city1)
+    data2 = get_weather_info(city2)
+
+    if not data1 or not data2:
+        print("❌ Could not fetch weather for one or both cities.")
+        return
+
+    c1 = data1["current"]
+    c2 = data2["current"]
+
+    print("========== WEATHER COMPARISON ==========\n")
+    print(f"{city1:<20} | {city2:<20}")
+    print("-" * 45)
+
+    print(f"Temp: {c1['temp_c']}°C{' ' * 10}| {c2['temp_c']}°C")
+    print(f"Feels Like: {c1['feelslike_c']}°C{' ' * 5}| {c2['feelslike_c']}°C")
+    print(f"Humidity: {c1['humidity']}%{' ' * 8}| {c2['humidity']}%")
+    print(f"Wind: {c1['wind_kph']} km/h{' ' * 7}| {c2['wind_kph']} km/h")
+    print(f"Condition: {c1['condition']['text']:<10} | {c2['condition']['text']}")
+
+    print("\n=========================================\n")
 def clothing_suggestions(temp):
     if temp < 10:
         return "Wear a jacket, gloves, and warm clothes."
@@ -54,10 +78,37 @@ while(True):
         print("\nYour favorite cities:")
         for i, city in enumerate(favorites, 1):
             print(f"{i}. {city}")
-        print("Type '0'to Enter a new city")
+        print("0. Enter a new city")
+        print("R. Remove a favorite city")
+        print("C. Compare two cities")
 
-        choice = input("\nChoose a favorite city number or 0: ")
+        choice = input("\nChoose a number, 0, 'R', or 'C': ").strip()
 
+        # ---- REMOVE FAVORITE ----
+        if choice.lower() == "r":
+            print("\nWhich city do you want to remove?")
+            for i, city in enumerate(favorites, 1):
+                print(f"{i}. {city}")
+
+            remove_choice = input("\nEnter number to remove (0 to cancel): ")
+
+            if remove_choice.isdigit() and int(remove_choice) in range(1, len(favorites) + 1):
+                removed_city = favorites.pop(int(remove_choice) - 1)
+                save_favorites(favorites)
+                print(f"❌ Removed '{removed_city}' from favorites.")
+            else:
+                print("Removal cancelled.")
+
+            continue
+
+        # ---- CITY COMPARISON ----
+        if choice.lower() == "c":
+            city1 = input("Enter first city: ").strip().title()
+            city2 = input("Enter second city: ").strip().title()
+            compare_two_cities(city1, city2)
+            continue
+
+        # ---- SELECT FAVORITE OR NEW CITY ----
         if choice.isdigit() and int(choice) in range(0, len(favorites) + 1):
             if choice == "0":
                 Location = input("Enter city name: ")
@@ -65,6 +116,45 @@ while(True):
                 Location = favorites[int(choice) - 1]
         else:
             Location = input("Enter city name: ")
+
+    # ------- No Favorites Yet -------
     else:
         Location = input("Enter Location: ")
 
+    location = Location.strip().title()
+
+    # ---- Fetch Weather ----
+    weather_data = get_weather_info(location)
+    if not weather_data:
+        continue
+
+    current = weather_data["current"]
+    temp_c = current["temp_c"]
+    temp_f = current["temp_f"]
+    feelslike_c = current["feelslike_c"]
+    humidity = current["humidity"]
+
+    print("\n-------- CURRENT WEATHER --------")
+    print(f"📍 Location: {location}")
+    print(f"🌡 Temperature: {temp_c}°C / {temp_f}°F")
+    print(f"🤔 Feels Like: {feelslike_c}°C")
+    print(f"💧 Humidity: {humidity}%")
+
+    print("\n" + feeling_message(temp_c))
+    print("👕 Clothing Tip:", clothing_suggestions(temp_c))
+
+    # ---- Add to favorites ----
+    add_fav = input("\nAdd this city to favorites? (y/n): ").lower()
+    if add_fav == "y":
+        if location not in favorites:
+            favorites.append(location)
+            save_favorites(favorites)
+            print("⭐ Added to favorites!")
+        else:
+            print("⭐ Already in favorites!")
+
+    # ---- Search again ----
+    again = input("\nDo you want to search again? (y/n): ").lower()
+    if again != "y":
+        print("\n🌤 Enjoy the weather! Goodbye!\n")
+        break
