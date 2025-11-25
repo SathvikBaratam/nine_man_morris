@@ -29,7 +29,8 @@ Save, load, and manage your favorite locations through a built-in JSON file.
 ##### Simple and Dependency-Light
 Only requires the requests library.
 
-### Project Structure
+## Project Structure
+
 weather-cli/
 │
 ├── main.py              # Main application loop and menu system
@@ -39,7 +40,7 @@ weather-cli/
 ├── favorite_cities.json # Auto-generated favorites file
 └── README.md            # Project documentation
 
-### Installation
+## Installation
 
 Install Python 3.8 or later.
 
@@ -50,7 +51,7 @@ Install the required dependency:
 
 Clone or download the project files into a single directory.
 
-### Configuration
+## Configuration
 
 This project uses WeatherAPI to fetch weather data.
 
