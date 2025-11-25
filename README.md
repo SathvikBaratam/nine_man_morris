@@ -9,24 +9,24 @@ It includes current weather details, multi-day forecasts, city comparisons, and 
 The Weather CLI project provides a user-friendly terminal experience for retrieving weather information without relying on complex UI libraries or exceptions.
 The logic is divided into three clear modules:
 
-#### weather_api.py – Handles all API requests
+**weather_api.py – Handles all API requests**
 
-#### weather_utils.py – Formatting helpers, icons, favorites, and display functions
+**weather_utils.py – Formatting helpers, icons, favorites, and display functions**
 
-#### main.py – User interface loop and application control flow
+**main.py – User interface loop and application control flow**
 
 ## Features
 
-#### Current Weather Information
+**Current Weather Information**
 Temperature, feels-like temperature, humidity, wind speed, air quality, and condition icons.
 
-#### City Comparison
+**City Comparison**
 Side-by-side comparison of temperature, humidity, wind, and more.
 
-#### Favorite Cities
+#**Favorite Cities**
 Save, load, and manage your favorite locations through a built-in JSON file.
 
-#### Simple and Dependency-Light
+**Simple and Dependency-Light**
 Only requires the requests library.
 
 ## Project Structure
