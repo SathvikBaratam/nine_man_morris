@@ -1,35 +1,35 @@
-**Weather CLI Application**
+**# Weather CLI Application**
 
 A clean, modular, and dependency-light command-line weather application built with Python.
 This project fetches real-time weather data from WeatherAPI and presents it in a simple, readable terminal interface.
 It includes current weather details, multi-day forecasts, city comparisons, and a persistent favorites system.
 
-**Overview**
+**# Overview**
 
 The Weather CLI project provides a user-friendly terminal experience for retrieving weather information without relying on complex UI libraries or exceptions.
 The logic is divided into three clear modules:
 
-weather_api.py – Handles all API requests
+### weather_api.py – Handles all API requests
 
-weather_utils.py – Formatting helpers, icons, favorites, and display functions
+### weather_utils.py – Formatting helpers, icons, favorites, and display functions
 
-main.py – User interface loop and application control flow
+### main.py – User interface loop and application control flow
 
-**Features**
+**# Features**
 
-Current Weather Information
+## Current Weather Information
 Temperature, feels-like temperature, humidity, wind speed, air quality, and condition icons.
 
-City Comparison
+## City Comparison
 Side-by-side comparison of temperature, humidity, wind, and more.
 
-Favorite Cities
+## Favorite Cities
 Save, load, and manage your favorite locations through a built-in JSON file.
 
-Simple and Dependency-Light
+## Simple and Dependency-Light
 Only requires the requests library.
 
-**Project Structure**
+**# Project Structure**
 weather-cli/
 │
 ├── main.py              # Main application loop and menu system
@@ -39,34 +39,34 @@ weather-cli/
 ├── favorite_cities.json # Auto-generated favorites file
 └── README.md            # Project documentation
 
-**Installation**
+**# Installation**
 
 Install Python 3.8 or later.
 
 Install the required dependency:
 
-pip install requests
+### pip install requests
 
 
 Clone or download the project files into a single directory.
 
-**Configuration**
+**# Configuration**
 
 This project uses WeatherAPI to fetch weather data.
 
 To set your API key, open weather_api.py and update:
 
-API_KEY = "your_api_key_here"
+### API_KEY = "your_api_key_here"
 
 
 You can obtain a free API key from:
-**👉 https://www.weatherapi.com/**
+### 👉 https://www.weatherapi.com/
 
-**Usage**
+**# Usage**
 
 Run the application from a terminal:
 
-python main.py
+### python main.py
 
 
 You will be presented with a menu similar to:
@@ -105,8 +105,3 @@ Use menu options A/B/C/D
 😊 Pleasant weather!
 👕 T-shirt weather.
 ==================================================
-
-
-Optional graphical UI (Tkinter/PyQt)
-
-If you'd like help implementing any of these, feel free to ask.
