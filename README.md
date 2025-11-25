@@ -91,18 +91,18 @@ Type a city name (e.g., Mumbai)
 
 Enter a number to select from favorites
 
-Use menu options A/B/C/D
+Use menu options A/B/C/D.
 
-📌 Example Output
-================ CURRENT WEATHER ================
-📍 Location: Tokyo
-🌤 Condition: Partly cloudy
-🌡 Temp: 22°C (71°F)
-🤔 Feels Like: 21°C
-💧 Humidity: 64%
-💨 Wind: 13 km/h
-🌫 AQI (PM2.5): 14
---------------------------------------------------
-😊 Pleasant weather!
-👕 T-shirt weather.
-==================================================
+#####Example Output
+##### ================ CURRENT WEATHER ================
+#####📍 Location: Tokyo
+##### 🌤 Condition: Partly cloudy
+##### 🌡 Temp: 22°C (71°F)
+##### 🤔 Feels Like: 21°C
+##### 💧 Humidity: 64%
+##### 💨 Wind: 13 km/h
+##### 🌫 AQI (PM2.5): 14
+##### --------------------------------------------------
+##### 😊 Pleasant weather!
+##### 👕 T-shirt weather.
+##### ==================================================
