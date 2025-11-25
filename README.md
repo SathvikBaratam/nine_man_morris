@@ -93,9 +93,9 @@ Enter a number to select from favorites
 
 Use menu options A/B/C/D.
 
-#####Example Output
+Example Output
 ##### ================ CURRENT WEATHER ================
-#####📍 Location: Tokyo
+📍 Location: Tokyo
 ##### 🌤 Condition: Partly cloudy
 ##### 🌡 Temp: 22°C (71°F)
 ##### 🤔 Feels Like: 21°C
