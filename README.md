@@ -4,7 +4,7 @@ A clean, modular, and dependency-light command-line weather application built wi
 This project fetches real-time weather data from WeatherAPI and presents it in a simple, readable terminal interface.
 It includes current weather details, multi-day forecasts, city comparisons, and a persistent favorites system.
 
-### Overview
+## Overview
 
 The Weather CLI project provides a user-friendly terminal experience for retrieving weather information without relying on complex UI libraries or exceptions.
 The logic is divided into three clear modules:
@@ -15,7 +15,7 @@ The logic is divided into three clear modules:
 
 #### main.py – User interface loop and application control flow
 
-### Features
+## Features
 
 #### Current Weather Information
 Temperature, feels-like temperature, humidity, wind speed, air quality, and condition icons.
@@ -63,7 +63,7 @@ To set your API key, open weather_api.py and update:
 You can obtain a free API key from:
 **👉 https://www.weatherapi.com/**
 
-### Usage
+## Usage
 
 Run the application from a terminal:
 
