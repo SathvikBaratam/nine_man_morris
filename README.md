@@ -34,6 +34,7 @@ Only requires the requests library.
 weather-cli/
 
 │
+
 ├── main.py              # Main application loop and menu system
 
 ├── weather_api.py       # API fetch functions (current weather, forecast)
