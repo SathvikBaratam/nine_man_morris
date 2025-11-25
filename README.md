@@ -18,6 +18,7 @@ It features a clean ASCII board, colored highlights, saving/loading, cross-platf
   - `Makefile` → build automation (Windows/Linux/Mac)
 
 ## Folder structure
+```
 project/
 ├── src/
 │   ├── main.c
@@ -32,6 +33,8 @@ project/
 │
 ├── Makefile
 └── README.md
+```
+
 
 ### Prerequisites
 
