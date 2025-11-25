@@ -4,23 +4,25 @@ import os
 
 API_KEY = "a307190edcda41628a8140313251111"
 FAV_FILE = "favorite_cities.json"
+
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
 def load_favorites():
     if os.path.exists(FAV_FILE):
-        f = open(FAV_FILE, "r")
-        data = f.read()
-        f.close()
-
+        with open(FAV_FILE, "r") as f:
+            data = f.read()
         if data.strip() == "":
             return []
         return json.loads(data)
-
     return []
 
 
 def save_favorites(favorites):
-    f = open(FAV_FILE, "w")
-    f.write(json.dumps(favorites, indent=2))
-    f.close()
+    with open(FAV_FILE, "w") as f:
+        f.write(json.dumps(favorites, indent=2))
 
 
 # ===========================================================
@@ -38,6 +40,8 @@ def get_weather(location):
         return None
 
     return response.json()
+
+
 # ===========================================================
 # HELPERS
 # ===========================================================
@@ -63,7 +67,7 @@ def clothing_tip(temp):
     if temp < 10: return "Wear a jacket & warm clothes."
     if temp < 20: return "A light hoodie is enough."
     if temp < 30: return "T-shirt weather."
-    return "Wear light,breathable cotton or linen."
+    return "Wear light, breathable cotton or linen."
 
 
 # ===========================================================
@@ -84,8 +88,9 @@ def show_current_weather(location, data):
     print(f"🌫 AQI (PM2.5): {int(current['air_quality']['pm2_5'])}")
     print("--------------------------------------------------")
     print(feeling_message(current["temp_c"]))
-    print("👕Cloathing Recommendations", clothing_tip(current["temp_c"]))
+    print("👕 Clothing Recommendations:", clothing_tip(current["temp_c"]))
     print("==================================================")
+
 
 def compare_cities(c1, c2):
     w1 = get_weather(c1)
@@ -112,7 +117,8 @@ def compare_cities(c1, c2):
 # MAIN LOOP
 # ===========================================================
 while True:
-    print("\n=============== WEATHER APP ===============")
+    clear_screen()
+    print("=============== WEATHER APP ===============")
 
     favorites = load_favorites()
 
@@ -125,6 +131,7 @@ while True:
     print(" A. Enter a new city")
     print(" B. Remove a favorite")
     print(" C. Compare two cities")
+    print(" D. Detect my location (auto)")
 
     choice = input("\nChoose option or enter city name: ").strip()
 
@@ -136,7 +143,6 @@ while True:
             print("\nRemove which?")
             for i, c in enumerate(favorites, 1):
                 print(f"{i}. {c}")
-
             ans = input("Enter number: ").strip()
             if ans.isdigit():
                 idx = int(ans)
@@ -144,6 +150,7 @@ while True:
                     removed = favorites.pop(idx - 1)
                     save_favorites(favorites)
                     print(f"❌ Removed {removed}")
+        input("\nPress Enter to continue...")
         continue
 
     # COMPARE
@@ -151,30 +158,60 @@ while True:
         c1 = input("First city: ").title()
         c2 = input("Second city: ").title()
         compare_cities(c1, c2)
-        continue
+        again = input("\nSearch again? (y/n): ").lower()
+        if again == "y":
+            continue
+        else:
+            print("\n🌤 Goodbye!\n")
+            break
+
+    # AUTO DETECT LOCATION
+    if choice.lower() == "d":
+        print("\n📍 Detecting your location...")
+        data = get_weather("auto:ip")
+        if data:
+            location = data["location"]["name"]
+            show_current_weather(location, data)
+        else:
+            print("❌ Location detection failed.")
+        again = input("\nSearch again? (y/n): ").lower()
+        if again == "y":
+            continue
+        else:
+            print("\n🌤 Goodbye!\n")
+            break
+
     # FAVORITE SELECTION
     if choice.isdigit() and 1 <= int(choice) <= len(favorites):
         location = favorites[int(choice) - 1]
+        from_favorite = True
     else:
         location = choice.title()
+        from_favorite = False
 
     # GET WEATHER
     data = get_weather(location)
     if data is None:
+        input("\nPress Enter to continue...")
         continue
 
     show_current_weather(location, data)
 
-    # ADD TO FAVORITES
-    add = input("Add to favorites? (y/n): ").lower()
-    if add == "y":
-        if location not in favorites:
+    # ADD TO FAVORITES (Improved UX)
+    if location in favorites and from_favorite:
+        pass
+    elif location in favorites and not from_favorite:
+        print("⭐ This city is already in your favorites.")
+    else:
+        add = input("Add to favorites? (y/n): ").lower()
+        if add == "y":
             favorites.append(location)
             save_favorites(favorites)
             print("⭐ Added!")
 
-    # AGAIN
     again = input("\nSearch again? (y/n): ").lower()
-    if again != "y":
+    if again == "y":
+        continue
+    else:
         print("\n🌤 Goodbye!\n")
         break
