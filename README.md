@@ -32,12 +32,19 @@ Only requires the requests library.
 ## Project Structure
 
 weather-cli/
+
 │
+
 ├── main.py              # Main application loop and menu system
+
 ├── weather_api.py       # API fetch functions (current weather, forecast)
+
 ├── weather_utils.py     # Helpers: icons, UI formatting, favorites, comparison
+
 │
+
 ├── favorite_cities.json # Auto-generated favorites file
+
 └── README.md            # Project documentation
 
 ## Installation
