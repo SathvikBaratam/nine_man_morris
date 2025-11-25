@@ -1,9 +1,9 @@
-🔹 Nine Men's Morris – Project Preview
+## 🔹 Nine Men's Morris – Project Preview
 
 This project is a complete terminal-based implementation of **Nine Men’s Morris**, a classic two-player strategy board game.  
 It features a clean ASCII board, colored highlights, saving/loading, cross-platform exit support, and a smooth gameplay flow covering both **placement** and **movement** phases.
 
-🔹 Project Preview
+## 🔹 Project Preview
 
 - Fully playable **Nine Men’s Morris** in the terminal  
 - ASCII-based game board with position indicators `(0–23)`  
@@ -19,17 +19,20 @@ It features a clean ASCII board, colored highlights, saving/loading, cross-platf
 
 ## Folder structure
 project/
-│── src/
+├── src/
 │   ├── main.c
 │   ├── game.c
 │   ├── board.c
-|   ├── mill.c
-│── include/
+│   ├── mill.c
+│
+├── include/
 │   ├── game.h
 │   ├── board.h
-|   ├── mill.h
-│── Makefile
-│── README.md
+│   ├── mill.h
+│
+├── Makefile
+└── README.md
+
 ### Prerequisites
 
 Before running:
