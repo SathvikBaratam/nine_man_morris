@@ -9,11 +9,11 @@ It includes current weather details, multi-day forecasts, city comparisons, and 
 The Weather CLI project provides a user-friendly terminal experience for retrieving weather information without relying on complex UI libraries or exceptions.
 The logic is divided into three clear modules:
 
-**weather_api.py – Handles all API requests**
+**weather_api.py** – Handles all API requests
 
-**weather_utils.py – Formatting helpers, icons, favorites, and display functions**
+**weather_utils.py** – Formatting helpers, icons, favorites, and display functions
 
-**main.py – User interface loop and application control flow**
+**main.py** – User interface loop and application control flow
 
 ## Features
 
